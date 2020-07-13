@@ -7,9 +7,10 @@ const {
   getClientById,
   getClientPoliciesByClientId,
 } = require('./controller');
+const { authenticate } = require('../auth');
 
 // Routes
-router.get('/', catchErrors(getClients));
+router.get('/', authenticate, catchErrors(getClients));
 router.get('/:id', catchErrors(getClientById));
 router.get('/:id/policies', catchErrors(getClientPoliciesByClientId));
 

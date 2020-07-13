@@ -1,7 +1,7 @@
 const { httpErrorCodes } = require('./consts');
 
 module.exports.ok = function(res, payload) {
-  return res.status(httpErrorCodes.ok).json({ ...payload });
+  return res.status(httpErrorCodes.ok).json((Array.isArray(payload) ? payload : ({ ...payload })));
 };
 
 module.exports.badRequest = function(res, payload) {
