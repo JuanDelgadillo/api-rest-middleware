@@ -8,6 +8,7 @@ app.use(bodyParser.json({ limit: '5mb' }));
 // Routes
 app.use('/login', require('./auth/routes'));
 app.use('/policies', require('./policies/routes'));
+app.use('/clients', require('./clients/routes'));
 
 // Middlewares
 app.use(errorHandlers.notFound);
