@@ -9,8 +9,7 @@ const authenticate = async (req, res) => {
 
   if (!username || !password) {
     return badRequest(res, { 
-      message: 'body should have mandatory properties "username" and "password"',
-      code: httpErrorCodes.badRequest,
+      message: 'body should have mandatory properties "username" and "password"'
     });
   }
 
@@ -38,8 +37,7 @@ const authenticate = async (req, res) => {
 
     if (data.statusCode === httpErrorCodes.unauthorized) {
       return unauthorized(res, { 
-        message: 'invalid username or password',
-        code: data.statusCode 
+        message: 'invalid username or password'
       });
     }
 
