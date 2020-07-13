@@ -1,4 +1,4 @@
-const insuranceApiEndpoint = 'https://dare-nodejs-assessment.herokuapp.com';
+const insuranceApiEndpoint = 'https://dare-nodejs-assessment.herokuapp.com/api';
 
 const httpErrorCodes = {
   ok: 200,
