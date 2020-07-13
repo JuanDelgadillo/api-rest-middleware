@@ -1,0 +1,11 @@
+{
+  "name": "api-rest-middleware",
+  "version": "1.0.0",
+  "description": "API REST middleware",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Delgadillo <j.mnuelh@gmail.com>",
+  "license": "ISC"
+}
