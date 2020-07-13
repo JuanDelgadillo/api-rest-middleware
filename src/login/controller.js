@@ -15,7 +15,7 @@ const authenticate = async (req, res) => {
   }
 
   try {
-    const response = await axios.post(`${insuranceApiEndpoint}/api/login`, {
+    const response = await axios.post(`${insuranceApiEndpoint}/login`, {
       client_id: username,
       client_secret: password,
     });
