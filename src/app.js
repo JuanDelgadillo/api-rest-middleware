@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json({ limit: '5mb' }));
 
 // Routes
-app.use('/auth', require('./auth/routes'));
+app.use('/login', require('./auth/routes'));
 
 // Middlewares
 app.use(errorHandlers.notFound);
