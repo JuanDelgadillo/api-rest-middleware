@@ -1,5 +1,5 @@
 const { ok, badRequest, unauthorized, serviceUnavailable } = require('../httpResponses');
-const { insuranceApiEndpoint, httpErrorCodes } = require('../consts');
+const { insuranceApiEndpoint, httpStatuses } = require('../consts');
 const axios = require('axios');
 
 
@@ -35,7 +35,7 @@ const authenticate = async (req, res) => {
   } catch (error) {
     const { data } = error.response;
 
-    if (data.statusCode === httpErrorCodes.unauthorized) {
+    if (data.statusCode === httpStatuses.unauthorized.code) {
       return unauthorized(res, { 
         message: 'invalid username or password'
       });

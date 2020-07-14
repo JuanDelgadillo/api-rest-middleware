@@ -22,6 +22,7 @@ exports.serverError = (err, req, res, _next) => {
 
   return res.json({
     message: err.message,
+    code: err.status,
     ...err.context,
   });
 };

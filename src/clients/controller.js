@@ -1,34 +1,11 @@
-const { insuranceApiEndpoint, httpErrorCodes } = require('../consts');
-const { ok, unauthorized, badRequest, serviceUnavailable } = require('../httpResponses');
-const axios = require('axios');
+const { ok } = require('../httpResponses');
+const clientService = require('./service');
 
 
 const getClients = async (req, res) => {
-  try {
-    const response = await axios.get(`${insuranceApiEndpoint}/clients`, {
-      headers: {
-        authorization: req.headers['authorization'],
-      },
-    });
+  const clients = await clientService.getClients(req);
 
-    return ok(res, response.data);
-  } catch (error) {
-    const { data } = error.response;
-
-    if (data.statusCode === httpErrorCodes.unauthorized) {
-      return unauthorized(res, { 
-        message: data.message,
-      });
-    }
-
-    if (data.statusCode === httpErrorCodes.badRequest) {
-      return badRequest(res, {
-        message: data.message,
-      });
-    }
-
-    return serviceUnavailable(res);
-  }
+  return ok(res, clients);
 };
 
 const getClientById = async (req, res) => {

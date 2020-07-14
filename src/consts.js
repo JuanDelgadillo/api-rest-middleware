@@ -1,13 +1,24 @@
 const insuranceApiEndpoint = 'https://dare-nodejs-assessment.herokuapp.com/api';
 
-const httpErrorCodes = {
-  ok: 200,
-  badRequest: 400,
-  unauthorized: 401,
-  serviceUnavailable: 503,
+const httpStatuses = {
+  ok: {
+    code: 200,
+  },
+  badRequest: {
+    code: 400,
+    message: 'Bad request',
+  },
+  unauthorized: {
+    code: 401,
+    message: 'Unauthorized',
+  },
+  serviceUnavailable: {
+    code: 503,
+    message: 'Service Unavailable',
+  },
 };
 
 module.exports = {
   insuranceApiEndpoint,
-  httpErrorCodes,
+  httpStatuses,
 };
