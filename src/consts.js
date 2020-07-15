@@ -16,6 +16,10 @@ const httpStatuses = {
     code: 503,
     message: 'Service Unavailable',
   },
+  notFound: {
+    code: 404,
+    message: 'Resource not found',
+  },
 };
 
 module.exports = {
