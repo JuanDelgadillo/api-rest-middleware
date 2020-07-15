@@ -3,7 +3,7 @@ const clientsService = require('./service');
 
 
 const getClients = async (req, res) => {
-  const { limit = 10 } = req.query;
+  const { limit = 10, name = '' } = req.query;
 
   if (Number.isNaN(parseInt(limit))) {
     return badRequest(res, { 
@@ -13,6 +13,11 @@ const getClients = async (req, res) => {
 
   let clients = await clientsService.getClientsWithPolicies(req);
   clients = clients.slice(0, limit);
+
+  if (name !== '') {
+    let nameFilter = (typeof name === 'string') ? name.toLowerCase() : name;
+    clients = clients.filter((client) => client.name.toLowerCase().search(nameFilter) !== -1);
+  }
 
   return ok(res, clients);
 };
