@@ -1,9 +1,11 @@
 const { ok } = require('../httpResponses');
+const policiesService = require('./service');
 
 
 const getPolicies = async (req, res) => {
-
-  return ok(res);
+  const policies = await policiesService.getPolicies(req);
+  
+  return ok(res, policies);
 };
 
 const getPolicyById = async (req, res) => {
