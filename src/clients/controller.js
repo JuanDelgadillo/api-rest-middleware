@@ -28,9 +28,17 @@ const getClientById = async (req, res) => {
 };
 
 const getClientPoliciesByClientId = async (req, res) => {
-  const { id } = req.params;
+  const { id = '' } = req.params;
 
-  return ok(res);
+  if (!id) {
+    return badRequest(res, { 
+      message: 'request should have mandatory parameter "id"'
+    });
+  }
+
+  const clientPolicies = await clientsService.getClientPoliciesByClientId(req, id);
+
+  return ok(res, clientPolicies);
 };
 
 module.exports = {
