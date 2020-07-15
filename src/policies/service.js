@@ -27,6 +27,17 @@ const getPolicies = async (req) => {
   }
 };
 
+const getPolicyById = async (req, policyId) => {
+  const policies = await getPolicies(req);
+  const policy = policies.filter(policy => policy.id === policyId).map((policy) => {
+    delete policy.clientId;
+    return policy;
+  });
+
+  return policy;
+};
+
 module.exports = {
   getPolicies,
+  getPolicyById,
 };
