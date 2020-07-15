@@ -12,6 +12,6 @@ const { authenticate } = require('../auth');
 // Routes
 router.get('/', authenticate, catchErrors(getClients));
 router.get('/:id', authenticate, catchErrors(getClientById));
-router.get('/:id/policies', catchErrors(getClientPoliciesByClientId));
+router.get('/:id/policies', authenticate, catchErrors(getClientPoliciesByClientId));
 
 module.exports = router;
