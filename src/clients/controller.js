@@ -3,7 +3,16 @@ const clientsService = require('./service');
 
 
 const getClients = async (req, res) => {
+  const { limit = 10 } = req.query;
+
+  if (Number.isNaN(parseInt(limit))) {
+    return badRequest(res, { 
+      message: '"limit" query parameter should be a number'
+    });
+  }
+
   let clients = await clientsService.getClientsWithPolicies(req);
+  clients = clients.slice(0, limit);
 
   return ok(res, clients);
 };
