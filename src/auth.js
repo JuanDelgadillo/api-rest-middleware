@@ -6,7 +6,7 @@ const authenticate = (req, res, next) => {
       message: 'No authorization header was found',
     });
   }
-  
+
   next();
 };
 

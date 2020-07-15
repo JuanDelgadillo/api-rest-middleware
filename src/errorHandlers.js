@@ -1,11 +1,14 @@
-const log = require('./logger.js');
-const isAsyncFunction = fn => typeof fn === 'function' && fn.constructor.name === 'AsyncFunction';
+/*eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }]*/
 
-exports.catchErrors = fn => {
+const log = require('./logger.js');
+const isAsyncFunction = (fn) =>
+  typeof fn === 'function' && fn.constructor.name === 'AsyncFunction';
+
+exports.catchErrors = (fn) => {
   if (!isAsyncFunction(fn)) {
     throw new Error('`catchErrors` expects an async function');
   }
-  return function(req, res, next) {
+  return function (req, res, next) {
     return fn(req, res, next).catch(next);
   };
 };

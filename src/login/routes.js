@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { catchErrors } = require('../errorHandlers');
-const {
-  authenticate,
-} = require('./controller');
+const { authenticate } = require('./controller');
 
 // Routes
 router.post('/', catchErrors(authenticate));

@@ -33,12 +33,14 @@ const getClientsWithPolicies = async (req) => {
   const policies = await policiesService.getPolicies(req);
 
   clients = clients.map((client) => {
-    client.policies = policies.filter((policy) => policy.clientId === client.id).map((policy) => {
-      delete policy.email;
-      delete policy.installmentPayment;
-      delete policy.clientId;
-      return policy;
-    });
+    client.policies = policies
+      .filter((policy) => policy.clientId === client.id)
+      .map((policy) => {
+        delete policy.email;
+        delete policy.installmentPayment;
+        delete policy.clientId;
+        return policy;
+      });
 
     return client;
   });
@@ -48,7 +50,7 @@ const getClientsWithPolicies = async (req) => {
 
 const getClientPoliciesByClientId = async (req, clientId) => {
   let clients = await getClients(req);
-  clients = clients.filter(client => client.id === clientId);
+  clients = clients.filter((client) => client.id === clientId);
 
   if (clients.length === 0) {
     let err = new Error(notFound.message);
@@ -57,11 +59,13 @@ const getClientPoliciesByClientId = async (req, clientId) => {
   }
 
   const policies = await policiesService.getPolicies(req);
-  const clientPolicies = policies.filter((policy) => policy.clientId === clientId).map((policy) => {
-    delete policy.clientId;
-    return policy;
-  });
-  
+  const clientPolicies = policies
+    .filter((policy) => policy.clientId === clientId)
+    .map((policy) => {
+      delete policy.clientId;
+      return policy;
+    });
+
   return clientPolicies;
 };
 
