@@ -1,5 +1,5 @@
 const { insuranceApiEndpoint, httpStatuses } = require('../consts');
-const { unauthorized, badRequest, serviceUnavailable } = httpStatuses;
+const { unauthorized, badRequest, serviceUnavailable, notFound } = httpStatuses;
 const policiesService = require('../policies/service');
 const axios = require('axios');
 
@@ -46,7 +46,27 @@ const getClientsWithPolicies = async (req) => {
   return clients;
 };
 
+const getClientPoliciesByClientId = async (req, clientId) => {
+  let clients = await getClients(req);
+  clients = clients.filter(client => client.id === clientId);
+
+  if (clients.length === 0) {
+    let err = new Error(notFound.message);
+    err.status = notFound.code;
+    throw err;
+  }
+
+  const policies = await policiesService.getPolicies(req);
+  const clientPolicies = policies.filter((policy) => policy.clientId === clientId).map((policy) => {
+    delete policy.clientId;
+    return policy;
+  });
+  
+  return clientPolicies;
+};
+
 module.exports = {
   getClients,
   getClientsWithPolicies,
+  getClientPoliciesByClientId,
 };
