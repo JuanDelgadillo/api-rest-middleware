@@ -6,9 +6,10 @@ const {
   getPolicies,
   getPolicyById,
 } = require('./controller');
+const { authenticate } = require('../auth');
 
 // Routes
-router.get('/', catchErrors(getPolicies));
-router.get('/:id', catchErrors(getPolicyById));
+router.get('/', authenticate, catchErrors(getPolicies));
+router.get('/:id', authenticate, catchErrors(getPolicyById));
 
 module.exports = router;
