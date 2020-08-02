@@ -24,7 +24,7 @@ const policies = [
   },
 ];
 
-describe.skip("Policies' service", () => {
+describe("Policies' service", () => {
   afterEach(() => {
     sinon.restore();
   });
